@@ -2,13 +2,9 @@ package hierarchy;
 
 public class Director extends Employee {
 
-    public Director() {
-        position = "Director";
-        salary = 350_000;
-    }
-
-    public Director(String name) {
-        this();
+    public Director(String name, int salary, String position) {
         this.name = name;
+        this.salary = salary;
+        this.position = position;
     }
 }

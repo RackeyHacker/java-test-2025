@@ -5,6 +5,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
+
         BookStore store = new BookStore();
 
         Book book1 = new Book("Clean Code", BookStatus.AVAILABLE, 45.0);
@@ -14,18 +15,17 @@ public class Main {
         store.addBookToWarehouse(book1);
         store.addBookToWarehouse(book2);
         store.addBookToWarehouse(book3);
+
         store.changeBookStatus("Effective Java", BookStatus.UNAVAILABLE);
 
-        List<Book> cart1 = new ArrayList<>();
-        cart1.add(book1);
-        cart1.add(book3);
+        List<Book> cart1 = new ArrayList<>(Arrays.asList(book1, book3));
         store.makeOrder(cart1);
 
-        List<Book> cart2 = new ArrayList<>();
-        cart2.add(book2);
+        List<Book> cart2 = new ArrayList<>(Collections.singletonList(book2));
         store.makeOrder(cart2);
 
         store.writeOffBookFromWarehouse(book3);
+
         store.changeOrderStatus(1, OrderStatus.COMPLETED);
 
         store.changeBookStatus("Effective Java", BookStatus.AVAILABLE);

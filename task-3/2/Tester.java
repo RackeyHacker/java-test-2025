@@ -2,13 +2,9 @@ package hierarchy;
 
 public class Tester extends Employee {
 
-    public Tester() {
-        position = "Tester";
-        salary = 80_000;
-    }
-
-    public Tester(String name) {
-        this();
+    public Tester(String name, int salary, String position) {
         this.name = name;
+        this.salary = salary;
+        this.position = position;
     }
 }
