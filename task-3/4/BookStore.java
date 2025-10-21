@@ -10,13 +10,8 @@ public class BookStore {
     private final List<Order> requests = new ArrayList<>();
 
     public void makeOrder(List<Book> cart) {
-        if (cart == null) {
-            System.out.println("Error: cart is null!");
-            return;
-        }
-
-        if (cart.isEmpty()) {
-            System.out.println("The cart is empty!");
+        if (cart == null || cart.isEmpty()) {
+            System.out.println("Error: The cart is null or empty!");
             return;
         }
 
@@ -157,7 +152,7 @@ public class BookStore {
 
     public void showCart() {
         if (cart.isEmpty()) {
-            System.out.println("\nYour cart is empty.\n");
+            System.out.println("\nYour cart is empty\n");
             return;
         }
 
