@@ -11,7 +11,7 @@ public class BookStore {
 
     public void makeOrder(List<Book> cart) {
         if (cart == null || cart.isEmpty()) {
-            System.out.println("Error: The cart is null or empty!");
+            System.out.println("Error: the cart is null or empty!");
             return;
         }
 
