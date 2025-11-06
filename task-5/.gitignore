@@ -1,0 +1,96 @@
+
+# Build directories
+
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Gradle
+.gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Java compiled files
+*.class
+
+# IDE files
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# But allow project-specific settings
+!.idea/codeStyles/
+!.idea/runConfigurations/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# OS junk
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs + temp files
+
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+logs/
+
+# Archives and packaged files
+
+*.jar
+*.war
+*.ear
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Java annotation processors
+
+.apt_generated/
+
+# Other common ignores
+
+# Backup files
+*~
+*.bak
+*.old
+
+# Crash dumps
+hs_err_pid*
+replay_pid*
+
+# Environment files
+.env
+.env.local
