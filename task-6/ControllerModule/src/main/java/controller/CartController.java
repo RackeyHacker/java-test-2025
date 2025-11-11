@@ -1,7 +1,7 @@
 package controller;
 
 import entity.Book;
-import model.BookStore;
+import model.models.BookStore;
 
 import java.util.List;
 

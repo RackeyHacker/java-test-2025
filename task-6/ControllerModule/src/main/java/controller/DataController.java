@@ -1,6 +1,6 @@
 package controller;
 
-import model.BookStore;
+import model.models.BookStore;
 
 public class DataController {
 

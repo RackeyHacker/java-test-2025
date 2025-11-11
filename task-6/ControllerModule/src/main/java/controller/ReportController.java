@@ -1,7 +1,7 @@
 package controller;
 
 import entity.Order;
-import model.BookStore;
+import model.models.BookStore;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

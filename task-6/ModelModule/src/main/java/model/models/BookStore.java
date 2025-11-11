@@ -1,4 +1,4 @@
-package model;
+package model.models;
 
 
 import com.opencsv.CSVReader;
@@ -8,6 +8,8 @@ import entity.Customer;
 import entity.Order;
 import enums.BookStatus;
 import enums.OrderStatus;
+import model.config.BookStoreConfig;
+import model.exceptions.DataProcessingException;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -26,6 +28,8 @@ public class BookStore {
     private final List<Order> requests = new ArrayList<>();
     private final List<Customer> customers = new ArrayList<>();
 
+    private final BookStoreConfig config = new BookStoreConfig();
+
     public Customer findCustomerById(int id) {
         for (Customer customer : customers) {
             if (customer.getId() == id) {
@@ -40,8 +44,8 @@ public class BookStore {
     }
 
     public Order makeOrder(List<Book> cart, Customer customer) {
-        if (cart == null || cart.isEmpty()) {
-            throw new IllegalArgumentException("The cart is null or empty");
+        if (cart.isEmpty()) {
+            throw new IllegalArgumentException("The cart is empty");
         }
 
         if (findCustomerById(customer.getId()) == null) {
@@ -125,7 +129,9 @@ public class BookStore {
         if (book == null) throw new IllegalArgumentException("The book is null");
         warehouse.add(book);
         book.setStatus(BookStatus.AVAILABLE);
-        processBookRequests(book);
+        if (config.isEnableCompleteRequests()) {
+            processBookRequests(book);
+        }
     }
 
     public void writeOffBookFromWarehouse(String title) {
@@ -365,10 +371,10 @@ public class BookStore {
     }
 
     private List<Book> findOldBooks() {
-        LocalDate sixMonthsAgo = LocalDate.now().minusMonths(6);
+        LocalDate staleDate = LocalDate.now().minusMonths(config.getStaleBookMonths());
 
         return warehouse.stream()
-                .filter(book -> book.getReceiptDate().isBefore(sixMonthsAgo))
+                .filter(book -> book.getReceiptDate().isBefore(staleDate))
                 .filter(book -> book.getStatus() == BookStatus.AVAILABLE)
                 .toList();
     }
@@ -412,7 +418,7 @@ public class BookStore {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException("Exporting books from file: " + e.getMessage());
+            throw new DataProcessingException("Error exporting books", e);
         }
     }
 
@@ -420,7 +426,7 @@ public class BookStore {
         try {
             reader.readNext();
         } catch (Exception e) {
-            throw new RuntimeException("Skipping header:" + e.getMessage());
+            throw new DataProcessingException("Error skipping header", e);
         }
     }
 
@@ -455,7 +461,7 @@ public class BookStore {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException("Importing books from file: " + e.getMessage());
+            throw new DataProcessingException("Error importing books", e);
         }
     }
 
@@ -485,7 +491,7 @@ public class BookStore {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            throw new DataProcessingException("Error exporting orders", e);
         }
     }
 
@@ -542,7 +548,7 @@ public class BookStore {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException("Importing orders: " + e.getMessage());
+            throw new DataProcessingException("Error importing orders", e);
         }
     }
 
@@ -560,7 +566,7 @@ public class BookStore {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException("Exporting customers: " + e.getMessage());
+            throw new DataProcessingException("Error exporting customers", e);
         }
     }
 
@@ -588,7 +594,7 @@ public class BookStore {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException("Importing customers: " + e.getMessage());
+            throw new DataProcessingException("Error importing customers", e);
         }
     }
 }

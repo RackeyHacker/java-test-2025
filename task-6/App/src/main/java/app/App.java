@@ -1,7 +1,7 @@
 package app;
 
 import controller.*;
-import model.BookStore;
+import model.models.BookStore;
 import view.Builder;
 import view.MenuController;
 import view.Navigator;

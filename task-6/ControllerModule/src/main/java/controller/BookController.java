@@ -3,7 +3,7 @@ package controller;
 import entity.Book;
 import entity.Order;
 import enums.BookStatus;
-import model.BookStore;
+import model.models.BookStore;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

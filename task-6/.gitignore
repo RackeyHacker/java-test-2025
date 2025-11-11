@@ -5,10 +5,9 @@
 
 ### Gradle ###
 .gradle/
-build/
+**/build/
 !gradle/wrapper/gradle-wrapper.jar
 
-# Трекать wrapper-скрипты
 gradlew
 gradlew.bat
 
@@ -44,8 +43,6 @@ Thumbs.db
 *.temp
 *.swp
 
-### Additional for Java apps ###
-/*.db
-/*.csv
+### Additional ###
 *.sqlite
 runtime/
