@@ -1,0 +1,1 @@
+[{"id":1,"status":"NEW","hasPendingRequests":false,"books":[{"id":1,"title":"tiger","author":"me","status":"AVAILABLE","price":189.10,"publicationDate":"2025-10-10","description":"dsadnsfn","requestCount":0,"receiptDate":"2025-11-12"}],"executionDate":"2025-11-15","amount":189.10,"customer":{"id":1,"name":"Dima","email":"mymail@gmail.com"}}]
