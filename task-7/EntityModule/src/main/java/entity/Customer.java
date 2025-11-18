@@ -1,8 +1,9 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Customer {
+public class Customer implements Serializable {
 
     private int id;
     private static int counter = 1;
@@ -13,6 +14,9 @@ public class Customer {
         this.id = counter++;
         this.name = name;
         this.email = email;
+    }
+
+    public Customer() {
     }
 
     public void setId(int id) {

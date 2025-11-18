@@ -2,19 +2,20 @@ package entity;
 
 import enums.OrderStatus;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Order {
+public class Order implements Serializable {
 
     private static int counter = 1;
     private int id;
     private OrderStatus status;
     private boolean hasPendingRequests;
-    private final List<Book> books;
+    private List<Book> books;
     private LocalDate executionDate;
     private BigDecimal amount = new BigDecimal("0");
     private Customer customer;
@@ -29,6 +30,9 @@ public class Order {
             this.amount = this.amount.add(book.getPrice());
         }
         this.customer = customer;
+    }
+
+    public Order() {
     }
 
     public int getId() {

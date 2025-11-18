@@ -2,13 +2,14 @@ package entity;
 
 import enums.BookStatus;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
-public class Book {
+public class Book implements Serializable {
 
     private int id;
     private static int counter = 1;
